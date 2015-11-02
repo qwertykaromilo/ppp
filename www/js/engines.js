@@ -61,11 +61,11 @@
                             }
                         }
                     } else {
-                        console.log("Error while bulk request sending. Message: '"+response.message+"'.");
+                        alert("Error while bulk request sending. Message: '"+response +"'.");
                     }
                 },
                 error: function(response) {
-                    console.log("Error while bulk request sending. Message: '"+response.message+"'.");
+                    alert("Error while bulk request sending. Message: '"+response + "'.");
                 }
             });
         };
@@ -108,11 +108,11 @@
                             callbackComplete(responseElem);
                         }
                     } else {
-                        console.log("Error while bulk request sending. Message: '"+response.message+"'.");
+                        alert("Error while bulk request sending. Message: '"+response +"'.");
                     }
                 },
                 error: function(response) {
-                    console.log("Error while bulk request sending. Message: '"+response.message+"'.");
+                     alert("Error while bulk request sending. Message: '"+response +"'.");
                 }
             });
         };
