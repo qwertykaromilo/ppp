@@ -1,0 +1,62 @@
+@media(max-width:768px) {
+
+}
+.hid {
+    display: none;
+}
+
+textarea {
+    resize: vertical;
+}
+* {
+    font-family: 'Roboto', sans-serif;
+}
+.modal {
+    z-index: 10010;
+}
+.modal-open {
+    overflow: auto;
+}
+.modal#loadingDialog {
+    opacity: 0.6;
+}
+.modal#loadingDialog, .modal#loadingDialog * {
+    background-color: #000000;
+    border: none;
+    box-shadow: none !important;
+    outline: none;
+    -webkit-box-shadow: none !important;
+}
+.modal#loadingDialog .modal-body {
+    text-align: center;
+}
+.modal.wide .modal-dialog {
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    top: 25%;
+    max-height: 50%;
+}
+
+.modal-body {
+    overflow: hidden;
+}
+.menu-item {
+    display: block;
+    margin: 10px;
+    border: 1px solid grey;
+    font-size: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.back-menu-item {
+    cursor: pointer;
+    font-size: 20px;
+}
+.errMsg {
+    color: red;
+}
+input.form-control {
+    margin-bottom: 10px;
+}

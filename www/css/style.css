@@ -1,0 +1,12 @@
+.attr_cont {
+    margin: 5px auto;
+}
+
+.attr_cont > .row {
+    margin: 2px auto;
+}
+
+.editor-block-label label small {
+    color: grey;
+    font-size: 10px;
+}
