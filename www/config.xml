@@ -15,14 +15,14 @@
     <author href="webkaro.ru" email="karomilo@gmail.com">
         Perudo Team
     </author>
-
+    <access origin="*" />
     <feature name="http://api.phonegap.com/1.0/network" />
     <!--
         If you do not want any permissions to be added to your app, add the
         following tag to your config.xml; you will still have the INTERNET
         permission on your app, which PhoneGap requires.
     -->
-    <preference name="permissions"                value="none"/>
+    <!--<preference name="permissions"                value="none"/>-->
 
     <!-- Customize your app and platform with the preference element. -->
     <preference name="orientation"                value="default" />        <!-- all: default means both landscape and portrait are enabled -->
@@ -117,9 +117,7 @@
 
     <!-- Added the following intents to support the removal of whitelist code from base cordova to a plugin -->
     <!-- Whitelist configuration. Refer to https://cordova.apache.org/docs/en/edge/guide_appdev_whitelist_index.md.html -->
-    <plugin name="cordova-plugin-whitelist" version="1" />
-    <access origin="*"/>
-    <access origin="http://landingdom.ru"/>
+
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
