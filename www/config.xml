@@ -6,10 +6,10 @@
         id        = "com.phonegap.helloworld"
         version   = "1.0.0">
 
-    <name>Perudo</name>
+    <name>Perudo Online</name>
 
     <description>
-        Hello World sample application that responds to the deviceready event.
+        Perudo Online - The ONE in Russia
     </description>
 
     <author href="webkaro.ru" email="karomilo@gmail.com">
