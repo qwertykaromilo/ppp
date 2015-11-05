@@ -58,6 +58,9 @@
                 var elem = elems[i];
                 var name = $(elem).attr("name");
                 var value = $(elem).val();
+                if ($(elem).attr("type") == "checkbox") {
+                    value = $(elem).prop("checked") + "";
+                }
                 if (name && name.length > 0) {
                     data[name] = value;
                 }
@@ -136,12 +139,6 @@
             dialog.modal("hide");
         }
     };
-    window.clearSetupExpressDialogUserData = function() {
-        var dialog = $('#setupExpressDialog');
-        dialog.find('[name="emailUserRegister"]').val("");
-        dialog.find('[name="emailUserExists"]').val("");
-        dialog.find('[name="password"]').val("");
-    };
     window.logOut = function(redirectURL) {
         AjaxEngine.sendBulkRequest({
             requestProcessor: "com.core.entity.pages.LoginPage",
@@ -156,30 +153,6 @@
 //            LoadingHelper.unsetLoading();
         });
     };
-    window.onSetupExpressClick = function(that) {
-        $(that).find(".errMsg").hide();
-        LoadingHelper.setLoading();
-        $.ajax({
-            url: "/profile/editor/ajax.jsp",
-            dataType: "json",
-            method: "post",
-            data: FormHelper.getFormData(that),
-            success: function(response) {
-                if (response.code == 0) {
-                    location.href = "/profile";
-                } else if (response.message) {
-                    $(that).find(".errMsg").text(response.message);
-                    $(that).find(".errMsg").show();
-                }
-            },
-            error: function(response) {
-                Alerts.error("server is unavailable");
-            },
-            complete: function() {
-                LoadingHelper.unsetLoading();
-            }
-        });
-    };
     window.onLoginClick = function(that) {
         var form =  $(that).closest("form");
         form.find(".errMsg").hide();
@@ -188,7 +161,7 @@
 
         }, function(response) {
             if (response.code == 1) {
-                form.find(".errMsg").text(response.message);
+                form.find(".errMsg").html(response.message);
                 form.find(".errMsg").show();
             } else if (response.code == 2) {
                 location = response.url;
@@ -221,69 +194,7 @@
             }
         });
     };
-    window.showDeleteDialog = function(instId, instName) {
-        _deleting_instance_id = instId;
-        $("#deleteDialog .qtext").text("Удалить сайт " + instName + "?");
-        $("#deleteDialog").modal("show");
-    };
-    window.approveDelete = function() {
-        LoadingHelper.setLoading();
-        $.ajax({
-            url: "/profile/editor/ajax.jsp",
-            dataType: "json",
-            method: "post",
-            data: {
-                action: "deleteInstance",
-                instanceId: _deleting_instance_id
-            },
-            success: function(response) {
-                if (response.code == 0) {
-                    $('.profile-landing-block[instanceId="'+response.instanceId+'"]').slideUp(function() {
-                        $(this).remove();
-                    });
-                } else {
-                    Alerts.error("error while deleting instance");
-                }
-            },
-            error: function(response) {
-                Alerts.error("server is unavailable");
-            },
-            complete: function() {
-                $("#deleteDialog").modal("hide");
-                LoadingHelper.unsetLoading();
-            }
-        });
-    };
-    window.showSetupDialog = function(templateId) {
-        _setting_template_id = templateId;
-        $("#setupDialog").modal("show");
-    };
-    window.approveSetup = function() {
-        LoadingHelper.setLoading();
-        $.ajax({
-            url: "/profile/editor/ajax.jsp",
-            dataType: "json",
-            method: "post",
-            data: {
-                action: "createInstance",
-                name: $('#setupDialog [name="name"]').val(),
-                templateId: _setting_template_id
-            },
-            success: function(response) {
-                if (response.code == 0) {
-                    location.href = "/profile";
-                } else {
-                    Alerts.error(response.message);
-                }
-            },
-            error: function(response) {
-                Alerts.error("server is unavailable");
-            },
-            complete: function() {
-                LoadingHelper.unsetLoading();
-            }
-        });
-    };
+
     window.sendFiles = function(files, callback, callbackError, callbackComplete) {
         var data = new FormData();
         for (var i = 0; i < files.length; ++i) {
@@ -345,4 +256,5 @@
     window.deepClone = function(obj) {
         return JSON.parse(JSON.stringify(obj));
     };
+    window.setTitle
 })(jQuery);

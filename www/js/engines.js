@@ -21,7 +21,10 @@
         };
         this.init = function() {
             initRefreshInterval();
-        }
+        };
+        this.getWidget = function(widgetId) {
+            return widgets[widgetId];
+        };
     })();
     addInitFunction(function() {
         WidgetEngine.init();
